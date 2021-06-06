@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>To Do List</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+
+  <main id="app" class="app">
+    <h1 class="title" style="margin-top: 40px; color: #274690;">Games List</h1>
+    <div class="input">
+      <input type="text" placeholder="What Is Your Next Video Game" class="new-input" v-model="newGame">
+      <button class="button" v-on:click="addGame">+ Add</button>
+    </div>
+    <div v-for="(game, index) in games" class="gamesList">
+      <ul class="task-list">
+        <li class="task-list-item">
+          <input type="checkbox" class="task-list-checkbox" v-model="game.completed">
+          <p class="task-list-text" :class="{ completed: game.completed }">{{ game.name }}</p>
+          <div class="task-list-icons">
+            <button class="remove-item" v-on:click="removeGame(index)">Played</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="left-items" style="color: red;">
+      ({{ remaining }}) Unplayed Games
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
